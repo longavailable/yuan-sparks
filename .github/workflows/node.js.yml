@@ -1,0 +1,32 @@
+name: convert-markdown-to-mindmap
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  run:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: checkout repo
+      uses: actions/checkout@v3
+    
+    - name: setup node.js and npm
+      uses: actions/setup-node@v3
+      with:
+        cache: npm
+    
+    - name: install markmap-cli
+      run: npm install -g markmap-cli
+      
+    - name: convert
+      run: |
+        mkdir markmaps-html
+        for f in markmaps/*.md; do markmap --no-open $f -o markmaps-html/$(basename $f | cut -d. -f1).html; done
+    
+    - name: commit and push data repo
+      uses: longavailable/simple-push-action@main
+      with:
+        message: "Converted markdown to html from Action `date`"
