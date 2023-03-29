@@ -21,7 +21,7 @@ jobs:
       
     - name: convert
       run: |
-        mkdir markmaps-html
+        mkdir -p markmaps-html
         for f in markmaps/*.md; do markmap --no-open $f -o markmaps-html/$(basename $f | cut -d. -f1).html; done
     
     - name: commit and push data repo
