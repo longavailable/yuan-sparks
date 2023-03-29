@@ -15,8 +15,6 @@ jobs:
     
     - name: setup node.js and npm
       uses: actions/setup-node@v3
-      with:
-        cache: npm
     
     - name: install markmap-cli
       run: npm install -g markmap-cli
