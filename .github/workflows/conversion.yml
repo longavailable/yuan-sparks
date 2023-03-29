@@ -28,3 +28,4 @@ jobs:
       uses: longavailable/simple-push-action@main
       with:
         message: "Converted markdown to html from Action `date`"
+        file_pattern: ./markmaps-html/*.html
